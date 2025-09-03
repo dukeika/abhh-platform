@@ -381,7 +381,7 @@ export const applicationService = {
         variables: { input }
       });
       
-      const updatedApplication = result.data.updateApplication as Application;
+      const updatedApplication = (result as any).data.updateApplication as Application;
       
       // Send notification if status changed
       if (currentApplication && input.overallStatus && 
