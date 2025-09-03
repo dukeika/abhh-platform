@@ -629,11 +629,11 @@ function ApplicationDetailsModal({ application, isOpen, onClose }: ApplicationDe
           </div>
 
           {/* Cover Letter */}
-          {getCoverLetter(application.feedback) && (
+          {getCoverLetter(application.feedback || undefined) && (
             <div className="mt-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Cover Letter</h3>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-900 whitespace-pre-wrap">{getCoverLetter(application.feedback)}</p>
+                <p className="text-gray-900 whitespace-pre-wrap">{getCoverLetter(application.feedback || undefined)}</p>
               </div>
             </div>
           )}
