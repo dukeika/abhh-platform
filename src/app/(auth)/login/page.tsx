@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Users, Briefcase } from "lucide-react";
+import Logo from "@/components/ui/Logo";
 
 export default function LoginPage() {
   const { signIn, amplifyReady } = useAuth();
@@ -135,20 +135,20 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-xl border border-gray-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 via-green-50 to-blue-50">
+      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-2xl border border-teal-100">
         {/* Logo and Brand */}
         <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
-            <div className="flex items-center space-x-1">
-              <Users className="h-6 w-6 text-white" />
-              <Briefcase className="h-5 w-5 text-white" />
-            </div>
+          <div className="mx-auto mb-6">
+            <Logo size="lg" variant="icon" className="mx-auto" />
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            ProRecruit
+            ABHH Platform
           </h1>
-          <p className="text-gray-600">Professional Recruitment Platform</p>
+          <h2 className="text-lg font-semibold text-teal-700 mb-1">
+            Applied Behavioral Holistic Health
+          </h2>
+          <p className="text-gray-600">Empowering Mental Health Recruitment</p>
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -312,7 +312,7 @@ export default function LoginPage() {
                 Signing In...
               </div>
             ) : (
-              "Sign In to Platform"
+              "Sign In to ABHH Platform"
             )}
           </Button>
 

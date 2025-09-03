@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <!-- Heart -->
+  <path d="M16 26c6-4 10-8 10-14 0-3-3-6-6-6-2 0-3.5 1-4 2.5C15.5 7 14 6 12 6 9 6 6 9 6 12c0 6 4 10 10 14z" fill="white" opacity="0.9"/>
+  <!-- Brain outline -->
+  <circle cx="22" cy="12" r="3" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+  <!-- People -->
+  <circle cx="8" cy="20" r="2" fill="white" opacity="0.8"/>
+  <circle cx="12" cy="22" r="1.5" fill="white" opacity="0.6"/>
+</svg>
