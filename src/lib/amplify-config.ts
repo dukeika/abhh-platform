@@ -1,6 +1,5 @@
 // src/lib/amplify-config.ts
 import { Amplify } from "aws-amplify";
-import awsExports from "../aws-exports";
 
 let isConfigured = false;
 
@@ -14,43 +13,58 @@ const configureAmplify = (): boolean => {
     let amplifyConfig;
 
     if (appEnv === 'abhh') {
-      // FORCE ABHH configuration - override everything to ensure us-west-1
+      // FORCE ABHH configuration - complete hardcoded config for us-west-1
       amplifyConfig = {
-        ...awsExports,
-        // FORCE us-west-1 region for ABHH
         aws_project_region: "us-west-1",
+        aws_appsync_graphqlEndpoint: "https://4pz36wwojfhijdsnbkzmvmmmfu.appsync-api.us-west-1.amazonaws.com/graphql",
+        aws_appsync_region: "us-west-1",
+        aws_appsync_authenticationType: "API_KEY",
+        aws_appsync_apiKey: "da2-h3ps5lhgdvd37cl7vnb6btj3wi",
+        aws_cognito_identity_pool_id: "us-west-1:dc6a1bc8-8963-43cd-9276-c584f903b28b",
         aws_cognito_region: "us-west-1",
         aws_user_pools_id: "us-west-1_SIcVm4uiV",
         aws_user_pools_web_client_id: "o85glfsigcbn1e91icouo8r69",
-        aws_cognito_identity_pool_id: "us-west-1:dc6a1bc8-8963-43cd-9276-c584f903b28b",
-        aws_appsync_region: "us-west-1",
-        aws_appsync_graphqlEndpoint: "https://4pz36wwojfhijdsnbkzmvmmmfu.appsync-api.us-west-1.amazonaws.com/graphql",
-        aws_appsync_apiKey: "da2-h3ps5lhgdvd37cl7vnb6btj3wi",
-        aws_appsync_authenticationType: "API_KEY",
+        oauth: {},
+        aws_cognito_username_attributes: ["EMAIL"],
+        aws_cognito_social_providers: [],
+        aws_cognito_signup_attributes: ["EMAIL"],
+        aws_cognito_mfa_configuration: "OFF",
+        aws_cognito_mfa_types: ["SMS"],
+        aws_cognito_password_protection_settings: {
+          passwordPolicyMinLength: 8,
+          passwordPolicyCharacters: []
+        },
+        aws_cognito_verification_mechanisms: ["EMAIL"],
         aws_user_files_s3_bucket: "interview-saas-storage-bucket1fa42-abbhsaas",
         aws_user_files_s3_bucket_region: "us-west-1"
       };
       console.log("🔧 ABHH Configuration - FORCING us-west-1 region");
-    } else if (appEnv === 'prorecruit') {
-      // ProRecruit configuration - eu-west-2
-      amplifyConfig = {
-        ...awsExports,
-        aws_project_region: "eu-west-2",
-        aws_cognito_region: "eu-west-2",
-        aws_user_pools_id: "eu-west-2_FpwJJthe4",
-        aws_user_pools_web_client_id: "3juansb0jr3s3b8qouon7nr9gn",
-        aws_cognito_identity_pool_id: "eu-west-2:22f32436-beb3-4729-b3bc-a2e7dbf71218",
-        aws_appsync_region: "eu-west-2",
-        aws_appsync_graphqlEndpoint: "https://javwcpdxwnavrj7rq7egf55ihu.appsync-api.eu-west-2.amazonaws.com/graphql",
-        aws_appsync_apiKey: "da2-kf4wdhfwkrfxzeykzqez5rci4a",
-        aws_appsync_authenticationType: "API_KEY",
-        aws_user_files_s3_bucket: "prorecruit-storage-eu-west-2-624914081304",
-        aws_user_files_s3_bucket_region: "eu-west-2"
-      };
-      console.log("🔧 ProRecruit Configuration - eu-west-2 region");
     } else {
-      // Default to ABHH
-      amplifyConfig = awsExports;
+      // Default to ABHH configuration
+      amplifyConfig = {
+        aws_project_region: "us-west-1",
+        aws_appsync_graphqlEndpoint: "https://4pz36wwojfhijdsnbkzmvmmmfu.appsync-api.us-west-1.amazonaws.com/graphql",
+        aws_appsync_region: "us-west-1",
+        aws_appsync_authenticationType: "API_KEY",
+        aws_appsync_apiKey: "da2-h3ps5lhgdvd37cl7vnb6btj3wi",
+        aws_cognito_identity_pool_id: "us-west-1:dc6a1bc8-8963-43cd-9276-c584f903b28b",
+        aws_cognito_region: "us-west-1",
+        aws_user_pools_id: "us-west-1_SIcVm4uiV",
+        aws_user_pools_web_client_id: "o85glfsigcbn1e91icouo8r69",
+        oauth: {},
+        aws_cognito_username_attributes: ["EMAIL"],
+        aws_cognito_social_providers: [],
+        aws_cognito_signup_attributes: ["EMAIL"],
+        aws_cognito_mfa_configuration: "OFF",
+        aws_cognito_mfa_types: ["SMS"],
+        aws_cognito_password_protection_settings: {
+          passwordPolicyMinLength: 8,
+          passwordPolicyCharacters: []
+        },
+        aws_cognito_verification_mechanisms: ["EMAIL"],
+        aws_user_files_s3_bucket: "interview-saas-storage-bucket1fa42-abbhsaas",
+        aws_user_files_s3_bucket_region: "us-west-1"
+      };
       console.log("🔧 Default Configuration");
     }
 
