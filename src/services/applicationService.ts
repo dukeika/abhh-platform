@@ -86,7 +86,11 @@ export const applicationService = {
       const result = await client.graphql({ 
         query: listApplications
       });
-      const applications = (result.data as any).listApplications.items as Application[];
+      // Handle GraphQL result properly
+      if (!('data' in result) || !result.data) {
+        throw new Error('No data returned from GraphQL query');
+      }
+      const applications = (result as any).data.listApplications.items as Application[];
       
       console.log(`📋 Found ${applications.length} applications, enriching with candidate and job details...`);
       
@@ -171,7 +175,7 @@ export const applicationService = {
           }
         }
       });
-      return (result.data as any).listApplications.items as Application[];
+      return (result as any).data.listApplications.items as Application[];
     } catch (error) {
       console.error('Error fetching candidate applications:', error);
       throw error;
@@ -189,7 +193,7 @@ export const applicationService = {
           }
         }
       });
-      return (result.data as any).listApplications.items as Application[];
+      return (result as any).data.listApplications.items as Application[];
     } catch (error) {
       console.error('Error fetching job applications:', error);
       throw error;
@@ -213,7 +217,7 @@ export const applicationService = {
         query: listApplications
       });
       
-      const allApplications = (result.data as any).listApplications.items as Application[];
+      const allApplications = (result as any).data.listApplications.items as Application[];
       
       // Filter applications that belong to jobs from this company
       const companyApplications = allApplications.filter(app => 
@@ -299,7 +303,12 @@ export const applicationService = {
         query: getApplicationSimplified,
         variables: { id }
       });
-      return (result.data as any).getApplication as Application;
+      
+      // Handle GraphQL result properly
+      if ('data' in result && result.data) {
+        return (result as any).data.getApplication as Application;
+      }
+      return null;
     } catch (error) {
       console.error('Error fetching application:', error);
       throw error;
