@@ -55,7 +55,7 @@ export const jobService = {
       const result = await client.graphql({ 
         query: listJobsWithCompany
       });
-      return result.data.listJobs.items as Job[];
+      return (result as any).data.listJobs.items as Job[];
     } catch (error) {
       console.error('Error fetching all jobs:', error);
       throw error;
@@ -73,7 +73,7 @@ export const jobService = {
           }
         }
       });
-      return result.data.listJobs.items as Job[];
+      return (result as any).data.listJobs.items as Job[];
     } catch (error) {
       console.error('Error fetching active jobs:', error);
       throw error;
@@ -91,7 +91,7 @@ export const jobService = {
           }
         }
       });
-      return result.data.listJobs.items as Job[];
+      return (result as any).data.listJobs.items as Job[];
     } catch (error) {
       console.error('Error fetching company jobs:', error);
       throw error;
@@ -105,7 +105,7 @@ export const jobService = {
         query: getJob,
         variables: { id }
       });
-      return result.data.getJob as Job;
+      return (result as any).data.getJob as Job;
     } catch (error) {
       console.error('Error fetching job:', error);
       throw error;
@@ -121,7 +121,7 @@ export const jobService = {
         variables: { input }
       });
       console.log('✅ Job creation result:', result);
-      return result.data.createJob as Job;
+      return (result as any).data.createJob as Job;
     } catch (error: any) {
       console.error('❌ Error creating job:', error);
       console.error('❌ Error details:', {
@@ -140,7 +140,7 @@ export const jobService = {
         query: updateJob,
         variables: { input }
       });
-      return result.data.updateJob as Job;
+      return (result as any).data.updateJob as Job;
     } catch (error) {
       console.error('Error updating job:', error);
       throw error;
